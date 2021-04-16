@@ -1,0 +1,10 @@
+﻿<bg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://monkeymanboy.github.io/BSML-Docs/ https://raw.githubusercontent.com/monkeymanboy/BSML-Docs/gh-pages/BSMLSchema.xsd">
+	<vertical pad-top="5" preferred-width="70" child-control-height="false" child-expand-height="false">
+		<button preferred-width="60" preferred-height="12" text="Draw Clear" on-click="OnDrawClear"/>
+		<button preferred-width="60" preferred-height="12" text="Draw Undo" on-click="OnDrawUndo"/>
+	</vertical>
+	<vertical pad-top="30" preferred-width="60" child-control-height="false" child-expand-height="false">
+		<slider-setting text="Draw Pen Size" min="1" max="10" increment="1" value="DrawSize" integer-only="true" on-change="OnDrawSizeChange" />
+		<color-setting text="Draw Color" value="DrawColor" on-change="OnColorChange" />  
+	</vertical>
+</bg>
