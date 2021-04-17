@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using VRUIControls;
+using System.Collections;
 
 namespace Rakugaki
 {
@@ -9,6 +10,7 @@ namespace Rakugaki
         protected GameObject _lineObject = null;
         private LineRenderer render;
         protected VRPointer _vrPointer;
+        private float _triggerTime;
 
         public void init(RakugakiController instance)
         {
@@ -17,6 +19,7 @@ namespace Rakugaki
             Logger.log?.Debug($"{name}: init()");
             if (_vrPointer == null)
                 Logger.log?.Debug($"{name}: vrPointer Null");
+            _triggerTime = 0;
         }
 
         void Update()
@@ -27,35 +30,31 @@ namespace Rakugaki
                 {
                     if (_vrPointer.vrController.triggerValue > 0.9f)
                     {
-                        if (_lineObject == null)
+                        if (_triggerTime == 0)
+                            _triggerTime = Time.time;
+
+                        if (Time.time-_triggerTime>0.2f)
                         {
-                            _lineObject = new GameObject($"RakugakiObject_{_rakugakiParent.drawCount++}");
-                            _lineObject.transform.SetParent(_rakugakiParent.transform);
-                            render = _lineObject.AddComponent<LineRenderer>();
-                            render.material = new Material(Shader.Find("Sprites/Default"));
-                            render.startColor = render.endColor = Plugin.instance.penColor;
-                            render.startWidth = render.endWidth = Plugin.instance.penSize;
-                            render.positionCount = 0;
+                            if (_lineObject == null)
+                            {
+                                _lineObject = new GameObject($"RakugakiObject_{_rakugakiParent.drawCount++}");
+                                _lineObject.transform.SetParent(_rakugakiParent.transform);
+                                render = _lineObject.AddComponent<LineRenderer>();
+                                render.material = new Material(Shader.Find("Sprites/Default"));
+                                render.startColor = render.endColor = Plugin.instance.penColor;
+                                render.startWidth = render.endWidth = Plugin.instance.penSize;
+                                render.positionCount = 0;
+                            }
+                            int NextPositionIndex = render.positionCount;
+                            render.positionCount = NextPositionIndex + 1;
+                            render.SetPosition(NextPositionIndex, _vrPointer.vrController.transform.position);
                         }
-                        int NextPositionIndex = render.positionCount;
-                        render.positionCount = NextPositionIndex + 1;
-                        render.SetPosition(NextPositionIndex, _vrPointer.vrController.transform.position);
                     }
                     else
                     {
+                        _triggerTime = 0;
                         if (_lineObject != null)
-                        {
                             _lineObject = null;
-                        }
-                    }
-
-                    if (Input.GetKeyDown(KeyCode.Backspace))
-                    {
-                        _rakugakiParent.UndoDraw();
-                    }
-                    if (Input.GetKeyDown(KeyCode.Delete))
-                    {
-                        _rakugakiParent.AllEraseDraw();
                     }
                 }
             }
