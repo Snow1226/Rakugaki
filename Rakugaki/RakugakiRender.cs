@@ -33,7 +33,7 @@ namespace Rakugaki
                         if (_triggerTime == 0)
                             _triggerTime = Time.time;
 
-                        if (Time.time-_triggerTime>0.2f)
+                        if (Time.time-_triggerTime>Plugin.instance.drawDelay)
                         {
                             if (_lineObject == null)
                             {

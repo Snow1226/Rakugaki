@@ -22,7 +22,14 @@ namespace Rakugaki.UI
             Plugin.instance.rakugakiController.UnsetRender();
             base.DidDeactivate(removedFromHierarchy, screenSystemDisabling);
         }
-
+        [UIValue("DrawDelay")]
+        private float DrawDelay = 0.1f;
+        [UIAction("OnDrawDelayChange")]
+        private void OnDrawDelayChange(float value)
+        {
+            DrawDelay = value;
+            Plugin.instance.drawDelay = value;
+        }
         [UIAction("OnDrawClear")]
         private void OnDrawClear()
         {

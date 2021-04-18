@@ -15,6 +15,7 @@ namespace Rakugaki
         public RakugakiController rakugakiController;
         public float penSize = 0.01f;
         public Color penColor = Color.white;
+        public float drawDelay = 0.1f;
         [Init]
         public void Init(IPALogger logger)
         {
