@@ -1,5 +1,6 @@
 ﻿using BeatSaberMarkupLanguage;
 using HMUI;
+using Rakugaki.Configuration;
 
 namespace Rakugaki.UI
 {
@@ -47,6 +48,8 @@ namespace Rakugaki.UI
         protected override void BackButtonWasPressed(ViewController topViewController)
         {
             if (this.IsBusy) return;
+            if(PluginConfig.Instance.SaveDrawState)
+                Plugin.instance.rakugakiController.SaveDrawData();
 
             BeatSaberUI.MainFlowCoordinator.DismissFlowCoordinator(this);
         }

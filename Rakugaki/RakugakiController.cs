@@ -2,8 +2,9 @@
 using Rakugaki.HarmonyPatches;
 using BeatSaberMarkupLanguage;
 using BeatSaberMarkupLanguage.MenuButtons;
-using HMUI;
 using Rakugaki.UI;
+using Rakugaki.Configuration;
+using System.Collections.Generic;
 
 namespace Rakugaki
 {
@@ -29,6 +30,7 @@ namespace Rakugaki
             MenuButton menuButton = new MenuButton(
                 "Rakugaki", "scribble mod", ShowModFlowCoordinator, true);
             MenuButtons.instance.RegisterButton(menuButton);
+
         }
         public void ShowModFlowCoordinator()
         {
@@ -43,6 +45,12 @@ namespace Rakugaki
             Logger.log?.Debug($"{name}: OnDestroy()");
             instance = null; // This MonoBehaviour is being destroyed, so set the static instance property to null.
 
+        }
+
+        private void Start()
+        {
+            if (PluginConfig.Instance.SaveDrawState)
+                LoadDrawData();
         }
 
         public void UndoDraw()
@@ -82,5 +90,45 @@ namespace Rakugaki
                 Destroy(_controller.GetComponent<RakugakiRender>());
                 
         }
+        public void SaveDrawData()
+        {
+            int i;
+            LineRenderer renderer;
+            PluginConfig.DrawDataElements element;
+            PluginConfig.Instance.DrawData = new List<PluginConfig.DrawDataElements>();
+            foreach (Transform child in this.transform)
+            {
+                element = new PluginConfig.DrawDataElements();
+                renderer = child.gameObject.GetComponent<LineRenderer>();
+                element.DrawColor = $"#{ColorUtility.ToHtmlStringRGB(renderer.startColor)}";
+                element.PenSize = renderer.startWidth;
+                var positions = new Vector3[renderer.positionCount];
+                int count = renderer.GetPositions(positions);
+                for (i = 0; i < count; i++)
+                    element.DrawElements.Add(positions[i]);
+                PluginConfig.Instance.DrawData.Add(element);
+            }
+        }
+
+        public void LoadDrawData()
+        {
+            LineRenderer render;
+            GameObject _lineObject;
+            Color color;
+            drawCount = 0;
+            foreach(PluginConfig.DrawDataElements elements in PluginConfig.Instance.DrawData)
+            {
+                _lineObject = new GameObject($"RakugakiObject_{drawCount++}");
+                _lineObject.transform.SetParent(this.transform);
+                render = _lineObject.AddComponent<LineRenderer>();
+                render.material = new Material(Shader.Find("Sprites/Default"));
+                ColorUtility.TryParseHtmlString(elements.DrawColor,out color);
+                render.startColor = render.endColor = color;
+                render.startWidth = render.endWidth = elements.PenSize;
+                render.positionCount = elements.DrawElements.Count;
+                render.SetPositions(elements.DrawElements.ToArray());
+            }
+        }
+
     }
 }

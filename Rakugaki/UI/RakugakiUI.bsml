@@ -6,6 +6,7 @@
 	</vertical>
 	<vertical pad-top="40" preferred-width="60" child-control-height="false" child-expand-height="false">
 		<slider-setting text="Draw Pen Size" min="1" max="10" increment="1" value="DrawSize" integer-only="true" on-change="OnDrawSizeChange" />
-		<color-setting text="Draw Color" value="DrawColor" on-change="OnColorChange" />  
+		<color-setting text="Draw Color" value="DrawColor" on-change="OnColorChange" />
+    <toggle-setting text="Save State" value="SaveState"  on-change="OnSaveStateChange" />
 	</vertical>
 </bg>

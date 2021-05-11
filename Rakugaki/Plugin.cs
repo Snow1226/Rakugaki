@@ -1,8 +1,11 @@
 ﻿using IPA;
+using IPA.Config;
+using IPA.Config.Stores;
 using UnityEngine;
 using IPALogger = IPA.Logging.Logger;
 using HarmonyLib;
 using System.Reflection;
+using Rakugaki.Configuration;
 
 namespace Rakugaki
 {
@@ -17,9 +20,10 @@ namespace Rakugaki
         public Color penColor = Color.white;
         public float drawDelay = 0.1f;
         [Init]
-        public void Init(IPALogger logger)
+        public void Init(Config conf, IPALogger logger)
         {
             instance = this;
+            PluginConfig.Instance = conf.Generated<Configuration.PluginConfig>();
             Logger.log = logger;
             Logger.log.Debug("Logger initialized.");
         }

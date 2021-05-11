@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using BeatSaberMarkupLanguage.Attributes;
 using BeatSaberMarkupLanguage.ViewControllers;
+using Rakugaki.Configuration;
 
 namespace Rakugaki.UI
 {
@@ -23,12 +24,12 @@ namespace Rakugaki.UI
             base.DidDeactivate(removedFromHierarchy, screenSystemDisabling);
         }
         [UIValue("DrawDelay")]
-        private float DrawDelay = 0.1f;
+        private float DrawDelay = PluginConfig.Instance.DelayToStartDrawing;
         [UIAction("OnDrawDelayChange")]
         private void OnDrawDelayChange(float value)
         {
             DrawDelay = value;
-            Plugin.instance.drawDelay = value;
+            PluginConfig.Instance.DelayToStartDrawing = value;
         }
         [UIAction("OnDrawClear")]
         private void OnDrawClear()
@@ -54,6 +55,13 @@ namespace Rakugaki.UI
         private void OnColorChange(Color value)
         {
             Plugin.instance.penColor = DrawColor = value;
+        }
+        [UIValue("SaveState")]
+        private bool SaveState = PluginConfig.Instance.SaveDrawState;
+        [UIAction("OnSaveStateChange")]
+        private void OnSaveStateChange(bool value)
+        {
+            PluginConfig.Instance.SaveDrawState = SaveState = value;
         }
     }
 }
