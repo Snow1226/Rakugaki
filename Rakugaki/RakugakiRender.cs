@@ -39,6 +39,7 @@ namespace Rakugaki
                             {
                                 _lineObject = new GameObject($"RakugakiObject_{_rakugakiParent.drawCount++}");
                                 _lineObject.transform.SetParent(_rakugakiParent.transform);
+                                _lineObject.layer = 5;
                                 render = _lineObject.AddComponent<LineRenderer>();
                                 render.material = new Material(Shader.Find("Sprites/Default"));
                                 render.startColor = render.endColor = Plugin.instance.penColor;

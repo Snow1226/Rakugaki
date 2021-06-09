@@ -120,6 +120,7 @@ namespace Rakugaki
             {
                 _lineObject = new GameObject($"RakugakiObject_{drawCount++}");
                 _lineObject.transform.SetParent(this.transform);
+                _lineObject.layer = 5;
                 render = _lineObject.AddComponent<LineRenderer>();
                 render.material = new Material(Shader.Find("Sprites/Default"));
                 ColorUtility.TryParseHtmlString(elements.DrawColor,out color);
