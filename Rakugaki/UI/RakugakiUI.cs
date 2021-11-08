@@ -23,6 +23,7 @@ namespace Rakugaki.UI
             Plugin.instance.rakugakiController.UnsetRender();
             base.DidDeactivate(removedFromHierarchy, screenSystemDisabling);
         }
+
         [UIValue("DrawDelay")]
         private float DrawDelay = PluginConfig.Instance.DelayToStartDrawing;
         [UIAction("OnDrawDelayChange")]
@@ -34,7 +35,8 @@ namespace Rakugaki.UI
         [UIAction("OnDrawClear")]
         private void OnDrawClear()
         {
-            Plugin.instance.rakugakiController.AllEraseDraw();
+            mainFlowCoordinator.ShowConfirmUI();
+            //Plugin.instance.rakugakiController.AllEraseDraw();
         }
         [UIAction("OnDrawUndo")]
         private void OnDrawUndo()

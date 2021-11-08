@@ -121,6 +121,7 @@
     <Compile Include="RakugakiController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RakugakiRender.cs" />
+    <Compile Include="UI\DrawClearConfirm.cs" />
     <Compile Include="UI\ModMainFlowCoordinator.cs" />
     <Compile Include="UI\RakugakiUI.cs" />
   </ItemGroup>
@@ -130,6 +131,7 @@
   <ItemGroup>
     <None Include="BuildTargets.targets" />
     <EmbeddedResource Include="UI\RakugakiUI.bsml" />
+    <EmbeddedResource Include="UI\DrawClearConfirm.bsml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
