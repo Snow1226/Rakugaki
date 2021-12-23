@@ -53,7 +53,7 @@ namespace Rakugaki
         public void OnApplicationQuit()
         {
             Logger.log.Debug("OnApplicationQuit");
-
+            _harmony.UnpatchSelf();
         }
 
     }
