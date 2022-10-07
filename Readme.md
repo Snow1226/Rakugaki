@@ -1,4 +1,4 @@
-Working game version above 1.19.0 
+Working game version above 1.19.0 - 1.25.0
 
 Mod to scribble.  
 It is a deteriorated product of the original scribble.
