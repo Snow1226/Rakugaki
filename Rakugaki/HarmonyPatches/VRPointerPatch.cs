@@ -3,7 +3,7 @@ using HarmonyLib;
 
 namespace Rakugaki.HarmonyPatches
 {
-    [HarmonyPatch(typeof(VRPointer), nameof(VRPointer.OnEnable))]
+    [HarmonyPatch(typeof(VRPointer),"Awake")]
     internal class VRPointerPatch
     {
         public static VRPointer Instance { get; private set; }

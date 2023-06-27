@@ -3,12 +3,12 @@
   "id": "Rakugaki",
   "name": "Rakugaki",
   "author": "Snow1226",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "scribble mod",
-  "gameVersion": "1.19.0",
+  "gameVersion": "1.30.2",
   "dependsOn": {
-    "BSIPA": "^4.2.1",
-    "BeatSaberMarkupLanguage": "^1.6.0"
+    "BSIPA": "^4.3.0",
+    "BeatSaberMarkupLanguage": "^1.7.3"
   },
   "features": []
 }

@@ -26,9 +26,9 @@ namespace Rakugaki
         {
             if (_vrPointer != null)
             {
-                if (_vrPointer.vrController != null)
+                if (_vrPointer.lastSelectedVrController != null)
                 {
-                    if (_vrPointer.vrController.triggerValue > 0.9f)
+                    if (_vrPointer.lastSelectedVrController.triggerValue > 0.9f)
                     {
                         if (_triggerTime == 0)
                             _triggerTime = Time.time;
@@ -48,7 +48,7 @@ namespace Rakugaki
                             }
                             int NextPositionIndex = render.positionCount;
                             render.positionCount = NextPositionIndex + 1;
-                            render.SetPosition(NextPositionIndex, _vrPointer.vrController.transform.position);
+                            render.SetPosition(NextPositionIndex, _vrPointer.lastSelectedVrController.transform.position);
                         }
                     }
                     else
