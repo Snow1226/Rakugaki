@@ -13,7 +13,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <DebugType>portable</DebugType>
-	<GameDirectory>$(ProjectDir)Refs</GameDirectory>
+    <GameDirectory>$(ProjectDir)Refs</GameDirectory>
     <BeatSaberReferences>$(GameDirectory)</BeatSaberReferences>
     <ReferencePath>$(ProjectDir)Refs</ReferencePath>
     <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
@@ -47,6 +47,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(GameDirectory)\Libs\0Harmony.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="BeatSaber.ViewSystem">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Beat Saber\Beat Saber_Data\Managed\BeatSaber.ViewSystem.dll</HintPath>
     </Reference>
     <Reference Include="BSML">
       <HintPath>$(GameDirectory)\Plugins\BSML.dll</HintPath>
@@ -124,6 +127,7 @@
     <Compile Include="UI\DrawClearConfirm.cs" />
     <Compile Include="UI\ModMainFlowCoordinator.cs" />
     <Compile Include="UI\RakugakiUI.cs" />
+    <Compile Include="UI\UIManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="manifest.json" />

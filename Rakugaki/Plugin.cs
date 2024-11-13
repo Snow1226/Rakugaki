@@ -6,6 +6,7 @@ using IPALogger = IPA.Logging.Logger;
 using HarmonyLib;
 using System.Reflection;
 using Rakugaki.Configuration;
+using Rakugaki.UI;
 
 namespace Rakugaki
 {
@@ -47,6 +48,13 @@ namespace Rakugaki
             _harmony.PatchAll(Assembly.GetExecutingAssembly());
             Logger.log.Debug("OnApplicationStart");
             rakugakiController=new GameObject("RakugakiController").AddComponent<RakugakiController>();
+
+            BeatSaberMarkupLanguage.Util.MainMenuAwaiter.MainMenuInitializing += MenuInit;
+        }
+
+        public void MenuInit()
+        {
+            UIManager.Init();
         }
 
         [OnExit]

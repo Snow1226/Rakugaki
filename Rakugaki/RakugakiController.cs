@@ -13,7 +13,7 @@ namespace Rakugaki
         public static RakugakiController instance { get; private set; }
         internal static RakugakiRender _controller;
         public int drawCount = 0;
-        private ModMainFlowCoordinator mainFlowCoordinator;
+        internal ModMainFlowCoordinator mainFlowCoordinator;
 
         private void Awake()
         {
@@ -27,19 +27,8 @@ namespace Rakugaki
             instance = this;
             Logger.log?.Debug($"{name}: Awake()");
 
-            MenuButton menuButton = new MenuButton(
-                "Rakugaki", "scribble mod", ShowModFlowCoordinator, true);
-            MenuButtons.instance.RegisterButton(menuButton);
-
         }
-        public void ShowModFlowCoordinator()
-        {
-            if (this.mainFlowCoordinator == null)
-                this.mainFlowCoordinator = BeatSaberUI.CreateFlowCoordinator<ModMainFlowCoordinator>();
-            if (mainFlowCoordinator.IsBusy) return;
 
-            BeatSaberUI.MainFlowCoordinator.PresentFlowCoordinator(mainFlowCoordinator);
-        }
         private void OnDestroy()
         {
             Logger.log?.Debug($"{name}: OnDestroy()");

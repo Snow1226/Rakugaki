@@ -1,8 +1,8 @@
-Working game version above 1.30.2
+Working game version above 1.39.0  
 
 Mod to scribble.  
 It is a deteriorated product of the original scribble.
 
 Reuirements
-- BSIPA above 4.3.0
-- BSML above 1.7.2
+BSIPA 4.3.5  
+BSML (BeatSaberMarkupLanguage) 1.12.3+bs.1.37.4  
