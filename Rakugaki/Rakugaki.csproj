@@ -49,7 +49,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="BeatSaber.ViewSystem">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Beat Saber\Beat Saber_Data\Managed\BeatSaber.ViewSystem.dll</HintPath>
+      <HintPath>$(GameDirectory)\Beat Saber_Data\Managed\BeatSaber.ViewSystem.dll</HintPath>
     </Reference>
     <Reference Include="BSML">
       <HintPath>$(GameDirectory)\Plugins\BSML.dll</HintPath>
